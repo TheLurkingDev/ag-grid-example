@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
 <html>
     <head>
         <meta charset="utf-8">
@@ -11,72 +11,13 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
-    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-alpine.css">
+        <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+        <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-alpine.css">
     </head>
     <body>
         <div id="myGrid" class="ag-theme-alpine" style="height: 300px; width:650px; margin-top: 50px;"></div>
-
-  <script type="text/javascript" charset="utf-8">
-    // specify the columns
-    const columnDefs = [
-      { field: "make", sortable: true, filter: true, cellRenderer: ({value}) => {
-    const a = document.createElement('a');
-    a.innerText = value;
-    a.href = 'https://www.google.com';
-    a.target = '_blank';
-    
-    // Prevent click from reaching AgGrid
-    a.addEventListener('click', event => { event.stopPropagation() });
-    return a;
-      }},
-      { field: "model", sortable: true, filter: true },
-      { field: "price", sortable: true, filter: true }
-    ];
-
-    // specify the data
-    const rowData = [
-      { make: "Toyota", model: "Celica", price: 35000 },
-      { make: "Ford", model: "Mondeo", price: 32000 },
-      { make: "Porsche", model: "Boxter", price: 72000 }
-    ];
-
-    // let the grid know which columns and what data to use
-    const gridOptions = {
-      columnDefs: columnDefs,
-      rowData: rowData,
-      rowSelection: 'multiple'
-    };
-
-    var params = {
-        skipHeader: false,
-        skipFooters: true,
-        skipGroups: true,
-        fileName: "export.csv"
-    };
-    // gridOptions.api.exportDataAsCsv(params);
-
-  // lookup the container we want the Grid to use
-  const eGridDiv = document.querySelector('#myGrid');
-
-  // create the grid passing in the div to use together with the columns & data we want to use
-  new agGrid.Grid(eGridDiv, gridOptions);
-
-  function getSelectedRows() {
-    var selectedNodes = gridOptions.api.getSelectedNodes();
-    var selectedData = selectedNodes.map(node => node.data);
-    var selectedDataStringPresentation = selectedData.map(node => node.make + ' ' + node.model).join(', ');
-    alert('Selected nodes: ' + selectedDataStringPresentation);
-  }
-
-  function exportToCsv() {
-    gridOptions.api.exportDataAsCsv(params);
-  }
-
-  </script>
-
-<button onclick="getSelectedRows()">Get Selected Rows</button>
-<button onclick="exportToCsv()">Export</button>
+        <button onclick="getSelectedRows()">Get Selected Rows</button>
+        <button onclick="exportToCsv()">Export</button>
         
         <script src="main.js" async defer></script>
     </body>
